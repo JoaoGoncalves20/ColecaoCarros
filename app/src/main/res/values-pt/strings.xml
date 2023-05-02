@@ -5,4 +5,9 @@
     <string name="search">Pesquisar</string>
     <string name="details">Detalhes</string>
     <string name="car">Carros</string>
+    <string name="action_settings">Definições</string>
+    <string name="first_fragment_label">Primeiro Fragmento</string>
+    <string name="second_fragment_label">Segundo Fragmento</string>
+    <string name="previous">Voltar</string>
+    <string name="text_about">A Aplicação consiste numa base de dados com duas tabelas.</string>
 </resources>
