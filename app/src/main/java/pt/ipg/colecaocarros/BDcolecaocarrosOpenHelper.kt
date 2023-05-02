@@ -16,11 +16,5 @@ class BDcolecaocarrosOpenHelper(
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, p2: Int) {
-        if (oldVersion ==  1){
-            // codigo de atualização
-        }
-        if (oldVersion < 3){
-
-        }
     }
 }
