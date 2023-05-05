@@ -11,8 +11,10 @@ private const val VERSAO_BASE_DADOS = 1
 class BDcolecaocarrosOpenHelper(
     context: Context?
 ) : SQLiteOpenHelper(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS) {
-    override fun onCreate(p0: SQLiteDatabase?) {
-
+    override fun onCreate(db: SQLiteDatabase?) {
+        requireNotNull(db)
+        TabelaCarro(db).cria()
+        TabelaDetalhes(db).cria()
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, p2: Int) {
