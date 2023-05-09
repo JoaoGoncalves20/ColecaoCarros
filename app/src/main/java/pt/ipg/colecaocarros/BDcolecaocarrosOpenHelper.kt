@@ -4,8 +4,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-private const val NOME_BASE_DADOS = "carros.db"
-
 private const val VERSAO_BASE_DADOS = 1
 
 class BDcolecaocarrosOpenHelper(
@@ -18,5 +16,9 @@ class BDcolecaocarrosOpenHelper(
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, p2: Int) {
+    }
+
+    companion object{
+        const val NOME_BASE_DADOS = "carros.db"
     }
 }
