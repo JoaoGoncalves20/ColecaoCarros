@@ -1,6 +1,7 @@
 package pt.ipg.colecaocarros
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -72,6 +73,35 @@ class BdInstrumentedTest {
 
     }
 
+    @Test
+    fun consegueLerDetalhes(){
+        val bd = getWritableDataBase()
 
+        val detalhes1 = Detalhes("Novo",27989.90,0.0)
+        insereDetalhes(bd, detalhes1)
 
+        val detalhes2 = Detalhes("usado",2989.90,157876.0)
+        insereDetalhes(bd, detalhes2)
+
+        val tabelaCategorias = TabelaDetalhes(bd)
+        val cursor = tabelaCategorias.consulta(
+            TabelaDetalhes.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(detalhes1.id.toString()),
+            null,
+            null,
+            null
+            )
+
+        assert(cursor.moveToNext())
+
+        val detalhesBD = Detalhes.fromCursor(cursor)
+
+        assertEquals(detalhes1, detalhesBD)
+
+        val cursorTodasCategorias = tabelaCategorias.consulta(TabelaDetalhes.CAMPOS, null, null, null, null, TabelaDetalhes.CAMPO_ESTADO)
+
+        assert(cursorTodasCategorias.count > 1)
+
+    }
 }

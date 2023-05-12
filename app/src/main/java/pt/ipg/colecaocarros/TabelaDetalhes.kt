@@ -13,6 +13,9 @@ class TabelaDetalhes(db: SQLiteDatabase):TabelaBD(db, NOME_TABELA) {
         const val CAMPO_ESTADO = "estado"
         const val CAMPO_PRECO = "preco"
         const val CAMPO_KILOMETRAGEM = "kilometragem"
+
+        val CAMPOS = arrayOf(BaseColumns._ID,CAMPO_ESTADO,CAMPO_PRECO,CAMPO_KILOMETRAGEM)
+
     }
 
 }
