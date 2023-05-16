@@ -25,8 +25,8 @@ class BdInstrumentedTest {
 
     private fun getWritableDataBase(): SQLiteDatabase {
         val openHelper = BDcolecaocarrosOpenHelper(getAppContext())
-        val bd = openHelper.writableDatabase
-        return bd
+        return openHelper.writableDatabase
+
     }
 
     private fun insereDetalhes(
@@ -35,6 +35,11 @@ class BdInstrumentedTest {
     ) {
         detalhes.id = TabelaDetalhes(bd).insere(detalhes.toContetValues())
         assertNotEquals(-1, detalhes.id)
+    }
+
+    private fun insereCarro(bd: SQLiteDatabase, carros: Carros) {
+        carros.id = TabelaCarro(bd).insere(carros.toContentValues())
+        assertNotEquals(-1, carros.id)
     }
 
     @Before
@@ -66,32 +71,36 @@ class BdInstrumentedTest {
     fun consegueInserirCarros(){
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Toyota",14567.0,123789.3)
+        val detalhes = Detalhes("Usado",14567.0,123789.3)
         insereDetalhes(bd, detalhes)
 
         val carro = Carros("Ford","Focus","18/8/99", detalhes.id)
+        insereCarro(bd,carro)
+
+        val carro2= Carros("Toyota","Prius","12/3/06", detalhes.id)
+        insereCarro(bd,carro2)
 
     }
 
     @Test
-    fun consegueLerDetalhes(){
+    fun consegueLerDetalhes() {
         val bd = getWritableDataBase()
 
-        val detalhes1 = Detalhes("Novo",27989.90,0.0)
+        val detalhes1 = Detalhes("novo", 15000.0, 0.0)
         insereDetalhes(bd, detalhes1)
 
-        val detalhes2 = Detalhes("usado",2989.90,157876.0)
+        val detalhes2 = Detalhes("usado", 2989.90, 157876.0)
         insereDetalhes(bd, detalhes2)
 
-        val tabelaCategorias = TabelaDetalhes(bd)
-        val cursor = tabelaCategorias.consulta(
+        val tabelaDetalhes = TabelaDetalhes(bd)
+        val cursor = tabelaDetalhes.consulta(
             TabelaDetalhes.CAMPOS,
             "${BaseColumns._ID}=?",
-            arrayOf(detalhes1.id.toString()),
+            arrayOf(detalhes2.id.toString()),
             null,
             null,
             null
-            )
+        )
 
         assert(cursor.moveToNext())
 
@@ -99,9 +108,43 @@ class BdInstrumentedTest {
 
         assertEquals(detalhes1, detalhesBD)
 
-        val cursorTodasCategorias = tabelaCategorias.consulta(TabelaDetalhes.CAMPOS, null, null, null, null, TabelaDetalhes.CAMPO_ESTADO)
+        val cursorTodasDetalhes = tabelaDetalhes.consulta(
+            TabelaDetalhes.CAMPOS,
+            null,
+            null,
+            null,
+            null,
+            TabelaDetalhes.CAMPO_ESTADO
+        )
+
+        assert(cursorTodasDetalhes.count > 1)
+
+    }
+
+    @Test
+    fun consegueLerCarro() {
+        val bd = getWritableDataBase()
+
+        val detalhes = Detalhes("Novo", 16908.0, 0.0)
+        insereDetalhes(bd, detalhes)
+
+        val carro1 = Carros("Ford","Fold","18/7/98", detalhes.id)
+        insereCarro(bd, carro1)
+
+        val carros2 = Carros("Toyota","Supra","15/6/06", detalhes.id)
+        insereCarro(bd, carros2)
+
+        val tabelacarro = TabelaCarro(bd)
+        val cursor = tabelacarro.consulta(TabelaCarro.CAMPOS, "${BaseColumns._ID}=?", arrayOf(carro1.id.toString()), null, null, null)
+
+        assert(cursor.moveToNext()) //move cursor para o primeiro registo
+
+        val carroBD = Carros.fromCursor(cursor)
+
+        assertEquals(carro1, carroBD)
+
+        val cursorTodasCategorias = tabelacarro.consulta(TabelaCarro.CAMPOS, null, null, null, null, TabelaCarro.CAMPO_MARCA)
 
         assert(cursorTodasCategorias.count > 1)
-
     }
 }

@@ -23,8 +23,10 @@ data class Detalhes(var estado: String, var preco: Double, var kilometragem: Dou
 
             val id = cursor.getLong(posID)
             val estado = cursor.getString(posEstado)
-            val preco = cursor.getString(posPreco)
-            val kilometragem = cursor.getString(posKilometragem)
+            val preco = cursor.getDouble(posPreco)
+            val kilometragem = cursor.getDouble(posKilometragem)
+
+            return Detalhes(estado,preco,kilometragem,id)
 
         }
     }

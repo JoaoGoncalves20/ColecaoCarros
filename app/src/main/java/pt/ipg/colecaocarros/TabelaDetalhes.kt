@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 
 class TabelaDetalhes(db: SQLiteDatabase):TabelaBD(db, NOME_TABELA) {
     override fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_ESTADO TEXT NOT NULL, $CAMPO_PRECO REAL, $CAMPO_KILOMETRAGEM REAL, id_carros INTEGER NOT NULL, FOREIGN KEY(id_carros) REFERENCES ${TabelaCarro.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_ESTADO TEXT NOT NULL, $CAMPO_PRECO REAL, $CAMPO_KILOMETRAGEM REAL)")
     }
 
     companion object{
