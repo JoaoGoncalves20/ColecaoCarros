@@ -10,6 +10,9 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.time.LocalDate
+import java.util.Calendar
+import java.util.Date
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -74,10 +77,15 @@ class BdInstrumentedTest {
         val detalhes = Detalhes("Usado",14567.0,123789.3)
         insereDetalhes(bd, detalhes)
 
-        val carro = Carros("Ford","Focus","18/8/99", detalhes.id)
+        val date = Calendar.getInstance()
+        date.set(1999,8,18)
+
+        val carro = Carros("Ford","Focus",date, detalhes.id)
         insereCarro(bd,carro)
 
-        val carro2= Carros("Toyota","Prius","12/3/06", detalhes.id)
+        date.set(2012,3,6)
+
+        val carro2= Carros("Toyota","Prius",date, detalhes.id)
         insereCarro(bd,carro2)
 
     }
@@ -128,10 +136,15 @@ class BdInstrumentedTest {
         val detalhes = Detalhes("Novo", 16908.0, 0.0)
         insereDetalhes(bd, detalhes)
 
-        val carro1 = Carros("Ford","Fold","18/7/98", detalhes.id)
+        val date = Calendar.getInstance()
+        date.set(2018,7,15)
+
+        val carro1 = Carros("Ford","Fold",date, detalhes.id)
         insereCarro(bd, carro1)
 
-        val carros2 = Carros("Toyota","Supra","15/6/06", detalhes.id)
+        date.set(1996,5,26)
+
+        val carros2 = Carros("Toyota","Supra",date, detalhes.id)
         insereCarro(bd, carros2)
 
         val tabelacarro = TabelaCarro(bd)
