@@ -9,8 +9,8 @@ data class Detalhes(var estado: String, var preco: Double, var kilometragem: Dou
         val valores = ContentValues()
 
         valores.put(TabelaDetalhes.CAMPO_ESTADO, estado)
-        valores.put(TabelaDetalhes.CAMPO_ESTADO, estado)
-        valores.put(TabelaDetalhes.CAMPO_ESTADO, estado)
+        valores.put(TabelaDetalhes.CAMPO_PRECO, preco)
+        valores.put(TabelaDetalhes.CAMPO_KILOMETRAGEM, kilometragem)
         return valores
     }
 

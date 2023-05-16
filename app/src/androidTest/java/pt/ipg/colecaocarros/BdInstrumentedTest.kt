@@ -95,7 +95,7 @@ class BdInstrumentedTest {
     fun consegueLerDetalhes() {
         val bd = getWritableDataBase()
 
-        val detalhes1 = Detalhes("novo", 15000.0, 0.0)
+        val detalhes1 = Detalhes("novo", 15900.0, 0.0)
         insereDetalhes(bd, detalhes1)
 
         val detalhes2 = Detalhes("usado", 2989.90, 157876.0)
@@ -115,7 +115,7 @@ class BdInstrumentedTest {
 
         val detalhesBD = Detalhes.fromCursor(cursor)
 
-        assertEquals(detalhes1, detalhesBD)
+        assertEquals(detalhes2, detalhesBD)
 
         val cursorTodasDetalhes = tabelaDetalhes.consulta(
             TabelaDetalhes.CAMPOS,
