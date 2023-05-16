@@ -83,9 +83,10 @@ class BdInstrumentedTest {
         val carro = Carros("Ford","Focus",date, detalhes.id)
         insereCarro(bd,carro)
 
-        date.set(2012,3,6)
+        val date2 = Calendar.getInstance()
+        date2.set(2012,3,6)
 
-        val carro2= Carros("Toyota","Prius",date, detalhes.id)
+        val carro2= Carros("Toyota","Prius",date2, detalhes.id)
         insereCarro(bd,carro2)
 
     }
@@ -142,9 +143,10 @@ class BdInstrumentedTest {
         val carro1 = Carros("Ford","Fold",date, detalhes.id)
         insereCarro(bd, carro1)
 
-        date.set(1996,5,26)
+        val date2 = Calendar.getInstance()
+        date2.set(1996,5,26)
 
-        val carros2 = Carros("Toyota","Supra",date, detalhes.id)
+        val carros2 = Carros("Toyota","Supra",date2, detalhes.id)
         insereCarro(bd, carros2)
 
         val tabelacarro = TabelaCarro(bd)
