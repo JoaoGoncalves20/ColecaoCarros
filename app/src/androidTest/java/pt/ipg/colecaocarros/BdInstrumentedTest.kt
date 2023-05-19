@@ -247,4 +247,5 @@ class BdInstrumentedTest {
 
         assertEquals(1,registosEliminados)
     }
+
 }
