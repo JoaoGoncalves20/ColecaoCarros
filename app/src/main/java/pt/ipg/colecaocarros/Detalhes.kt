@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 
 data class Detalhes(var estado: String, var preco: Double, var kilometragem: Double, var id: Long = -1) {
-    fun toContetValues(): ContentValues {
+    fun toContentValues(): ContentValues {
         val valores = ContentValues()
 
         valores.put(TabelaDetalhes.CAMPO_ESTADO, estado)

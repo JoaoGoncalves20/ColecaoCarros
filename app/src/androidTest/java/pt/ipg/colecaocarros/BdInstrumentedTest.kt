@@ -10,9 +10,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
-import java.time.LocalDate
 import java.util.Calendar
-import java.util.Date
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -36,7 +34,7 @@ class BdInstrumentedTest {
         bd: SQLiteDatabase,
         detalhes: Detalhes
     ) {
-        detalhes.id = TabelaDetalhes(bd).insere(detalhes.toContetValues())
+        detalhes.id = TabelaDetalhes(bd).insere(detalhes.toContentValues())
         assertNotEquals(-1, detalhes.id)
     }
 
@@ -161,5 +159,92 @@ class BdInstrumentedTest {
         val cursorTodasCategorias = tabelacarro.consulta(TabelaCarro.CAMPOS, null, null, null, null, TabelaCarro.CAMPO_MARCA)
 
         assert(cursorTodasCategorias.count > 1)
+    }
+
+    @Test
+    fun consegueAlterarDetalhes() {
+        val bd = getWritableDataBase()
+
+        val detalhes = Detalhes("Novo", 13808.0, 0.0)
+        insereDetalhes(bd, detalhes)
+
+        detalhes.estado = "novo"
+
+        val registosAlterados = TabelaDetalhes(bd).altera(
+            detalhes.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(detalhes.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueAlterarCarros() {
+        val bd = getWritableDataBase()
+
+        val detalhes1 = Detalhes("Usado", 16908.0, 85000.0)
+        insereDetalhes(bd, detalhes1)
+
+        val detalhes2 = Detalhes("Usado", 14608.0, 135000.0)
+        insereDetalhes(bd, detalhes2)
+
+        val date = Calendar.getInstance()
+        date.set(2003,5,6)
+
+        val carro = Carros("Mercedez","A350",date, detalhes2.id)
+        insereCarro(bd, carro)
+
+        date.set(2003,5,13)
+
+        carro.id_detalhes = detalhes1.id
+        carro.modelo = "M3"
+        carro.data = date
+        carro.marca = "BMW"
+
+        val registosAlterados = TabelaCarro(bd).altera(
+            carro.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(carro.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+
+    @Test
+    fun consegueApagarDetalhes(){
+        val bd = getWritableDataBase()
+
+        val detalhes = Detalhes("Usado", 7308.83, 76000.0)
+        insereDetalhes(bd, detalhes)
+
+        val registosEliminados = TabelaDetalhes(bd).elemina(
+            "${BaseColumns._ID}=?",
+            arrayOf(detalhes.id.toString())
+        )
+
+        assertEquals(1,registosEliminados)
+    }
+
+    @Test
+    fun consegueApagarCarros(){
+        val bd = getWritableDataBase()
+
+        val detalhes = Detalhes("Novo", 37308.83, 0.0)
+        insereDetalhes(bd, detalhes)
+
+        val date = Calendar.getInstance()
+        date.set(2023,2,6)
+
+        val carro = Carros("Hyundai","Blank",date, detalhes.id)
+        insereCarro(bd, carro)
+
+        val registosEliminados = TabelaCarro(bd).elemina(
+            "${BaseColumns._ID}=?",
+            arrayOf(carro.id.toString())
+        )
+
+        assertEquals(1,registosEliminados)
     }
 }
