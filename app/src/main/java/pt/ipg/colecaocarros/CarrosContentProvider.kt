@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class CarrosContentProvider : ContentProvider() {
     private var bdOpenHelper : BDcolecaocarrosOpenHelper? = null
@@ -21,7 +22,32 @@ class CarrosContentProvider : ContentProvider() {
         p3: Array<out String>?,
         p4: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.readableDatabase
+        val id = p0.lastPathSegment
+
+        val endereco = uriMatcher().match(p0)
+
+        val tabela = when (endereco){
+            URI_DETALHES, URI_DETALHES_ID -> TabelaDetalhes(bd)
+            URI_CARROS, URI_CARROS_ID -> TabelaCarro(bd)
+
+            else -> null
+        }
+        val (selecao, argsSel) = when(endereco){
+            URI_DETALHES_ID,URI_CARROS_ID -> Pair("${BaseColumns._ID}=?", arrayOf(id))
+            else -> Pair(p2,p3)
+        }
+
+        return tabela?.consulta(
+            p1 as Array<String>,
+            selecao,
+            argsSel as Array<String>?,
+            null,
+            null,
+            p4
+        )
+
+
     }
 
     override fun getType(p0: Uri): String? {
@@ -47,16 +73,17 @@ class CarrosContentProvider : ContentProvider() {
 
 
         private const val URI_DETALHES = 100
+        private const val URI_DETALHES_ID = 101
         private const val URI_CARROS = 200
+        private const val URI_CARROS_ID = 201
 
         fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(AUTORIDADE, DETALHES,URI_DETALHES)
+            addURI(AUTORIDADE, DETALHES,URI_DETALHES) /* Content://pt.ipg.ColecaoCarros/detalhes */
+            addURI(AUTORIDADE,"$DETALHES/#", URI_DETALHES_ID) /* Content://pt.ipg.ColecaoCarros/detalhes/(um numero) */
             addURI(AUTORIDADE, CARROS,URI_CARROS)
+            addURI(AUTORIDADE,"$CARROS/#", URI_CARROS_ID)
 
 
-            /*
-            Content://pt.ipg.ColecaoCarros/detalhes
-             */
         }
 
     }
