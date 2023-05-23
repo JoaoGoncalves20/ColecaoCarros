@@ -75,11 +75,36 @@ class CarrosContentProvider : ContentProvider() {
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(p0)
+
+        val tabela = when (endereco){
+            URI_DETALHES_ID -> TabelaDetalhes(bd)
+            URI_CARROS_ID -> TabelaCarro(bd)
+
+            else -> return 0
+        }
+
+        val id = p0.lastPathSegment!!
+        return tabela.elemina("${BaseColumns._ID}=?", arrayOf(id))
     }
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(p0)
+
+        val tabela = when (endereco){
+            URI_DETALHES_ID -> TabelaDetalhes(bd)
+            URI_CARROS_ID -> TabelaCarro(bd)
+
+            else -> return 0
+        }
+
+        val id = p0.lastPathSegment!!
+        return tabela.altera(p1!!,"${BaseColumns._ID}=?", arrayOf(id))
+
     }
 
     companion object{
