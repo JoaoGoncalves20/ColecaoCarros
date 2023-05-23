@@ -55,7 +55,23 @@ class CarrosContentProvider : ContentProvider() {
     }
 
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco = uriMatcher().match(p0)
+
+        val tabela = when (endereco){
+            URI_DETALHES -> TabelaDetalhes(bd)
+            URI_CARROS -> TabelaCarro(bd)
+
+            else -> return null
+        }
+
+        val id = tabela.insere(p1!!)
+        if(id == -1L) {
+            return null
+        }
+
+        return Uri.withAppendedPath(p0, id.toString())
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
