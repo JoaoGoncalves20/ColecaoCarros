@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 import java.util.Calendar
 import java.util.Date
 
-data class Carros(var marca: String,var modelo: String, var data: Calendar, var id_detalhes: Long, var id: Long=-1) {
+data class Carros(var marca: String, var modelo: String, var data: Calendar, var id_detalhes: Long, var id: Long=-1) {
     fun toContentValues():ContentValues{
         val valores = ContentValues()
 
