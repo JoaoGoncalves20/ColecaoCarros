@@ -11,6 +11,8 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.colecaocarros.databinding.FragmentListaCarrosBinding
 
+private const val ID_LOADER_LIVROS = 0
+
 class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var _binding: FragmentListaCarrosBinding? = null
@@ -35,6 +37,9 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val adapterCarros = AdapterCarros()
         binding.recycleViewCarros.adapter = adapterCarros
         binding.recycleViewCarros.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_LIVROS,null,this)
     }
 
     companion object {
