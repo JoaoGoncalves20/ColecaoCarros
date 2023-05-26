@@ -11,4 +11,7 @@
     <string name="car">Cars</string>
 
     <string name="text_about">A Aplicação consiste numa base de dados com duas tabelas sobre a coleção de carros.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lista_carros_label">Carros</string>
 </resources>

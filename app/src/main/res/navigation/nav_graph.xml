@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_SobreFragment"
             app:destination="@id/SobreFragment" />
+        <action
+            android:id="@+id/action_MenuPrincipalFragment_to_listaCarrosFragment"
+            app:destination="@id/ListaCarrosFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -23,6 +26,15 @@
 
         <action
             android:id="@+id/action_Sobreragment_to_MenuPrincipalFragment"
+            app:destination="@id/MenuPrincipalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ListaCarrosFragment"
+        android:name="pt.ipg.colecaocarros.ListaCarrosFragment"
+        android:label="@string/lista_carros_label"
+        tools:layout="@layout/fragment_lista_carros">
+        <action
+            android:id="@+id/action_ListaCarrosFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
     </fragment>
 </navigation>
