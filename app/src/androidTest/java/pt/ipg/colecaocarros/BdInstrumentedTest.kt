@@ -18,7 +18,7 @@ import java.util.Calendar
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class BdInstrumentedTest {
+class wwBdInstrumentedTest {
 
     private fun getAppContext() =
         InstrumentationRegistry.getInstrumentation().targetContext

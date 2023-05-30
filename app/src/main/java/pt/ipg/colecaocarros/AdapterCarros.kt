@@ -3,6 +3,7 @@ package pt.ipg.colecaocarros
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -12,8 +13,16 @@ class AdapterCarros(val Fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
             field = value
             notifyDataSetChanged()
         }
-    inner class ViewHolderCarros(itemView: View) : ViewHolder(itemView) {
+    inner class ViewHolderCarros(contentor: View) : ViewHolder(contentor) {
+        private val textViewMarca = contentor.findViewById<TextView>(R.id.textViewMarca)
+        private val textViewModelo = contentor.findViewById<TextView>(R.id.textViewModelo)
 
+        internal var carros: Carros? = null
+            set(value) {
+                field = value
+                textViewMarca.text = carros?.marca?: ""
+                textViewMarca.text = carros?.id_detalhes.toString()?: ""
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCarros {
@@ -27,6 +36,7 @@ class AdapterCarros(val Fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
     }
 
     override fun onBindViewHolder(holder: ViewHolderCarros, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.move(position)
+        holder.carros = Carros.fromCursor(cursor!!)
     }
 }
