@@ -6,6 +6,7 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import android.provider.BaseColumns
+import kotlin.contracts.contract
 
 class CarrosContentProvider : ContentProvider() {
     private var bdOpenHelper : BDcolecaocarrosOpenHelper? = null
@@ -116,14 +117,19 @@ class CarrosContentProvider : ContentProvider() {
 
     companion object{
         private  const val AUTORIDADE = "pt.ipg.ColecaoCarros"
-        const val DETALHES = "detalhes"
-        const val CARROS = "carros"
+        private const val DETALHES = "detalhes"
+        private const val CARROS = "carros"
 
 
         private const val URI_DETALHES = 100
         private const val URI_DETALHES_ID = 101
         private const val URI_CARROS = 200
         private const val URI_CARROS_ID = 201
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTORIDADE")
+
+        val ENDERECO_DETALHES = Uri.withAppendedPath(ENDERECO_BASE, DETALHES)
+        val ENDERECO_CARROS = Uri.withAppendedPath(ENDERECO_BASE, CARROS)
 
         fun uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, DETALHES,URI_DETALHES) /* Content://pt.ipg.ColecaoCarros/detalhes */
