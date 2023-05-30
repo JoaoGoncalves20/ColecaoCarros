@@ -33,10 +33,12 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         return binding.root
     }
 
+    private val adapterCarros = AdapterCarros()
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterCarros = AdapterCarros()
         binding.recycleViewCarros.adapter = adapterCarros
         binding.recycleViewCarros.layoutManager = LinearLayoutManager(requireContext())
 
@@ -60,10 +62,10 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+        adapterCarros.cursor = null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
+        adapterCarros.cursor = data
     }
 }
