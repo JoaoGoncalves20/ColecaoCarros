@@ -45,7 +45,7 @@ class wwBdInstrumentedTest {
 
     @Before
     fun apagaBaseDados(){
-        getAppContext().deleteDatabase(BDcolecaocarrosOpenHelper.NOME_BASE_DADOS)
+        //getAppContext().deleteDatabase(BDcolecaocarrosOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test

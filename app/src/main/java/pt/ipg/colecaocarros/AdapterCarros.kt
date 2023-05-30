@@ -21,7 +21,7 @@ class AdapterCarros(val Fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
             set(value) {
                 field = value
                 textViewMarca.text = carros?.marca?: ""
-                textViewMarca.text = carros?.id_detalhes.toString()?: ""
+                textViewModelo.text = carros?.id_detalhes.toString()?: ""
             }
     }
 
@@ -36,7 +36,7 @@ class AdapterCarros(val Fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
     }
 
     override fun onBindViewHolder(holder: ViewHolderCarros, position: Int) {
-        cursor!!.move(position)
+        cursor!!.moveToPosition(position)
         holder.carros = Carros.fromCursor(cursor!!)
     }
 }
