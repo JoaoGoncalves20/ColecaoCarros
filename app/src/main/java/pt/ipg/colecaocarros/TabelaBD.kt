@@ -11,7 +11,7 @@ abstract class TabelaBD(val db: SQLiteDatabase, val nome: String) {
         db.insert(nome,null,valores)
 
 
-    fun consulta(
+    open fun consulta(
         colunas: Array<String>,
         selacao: String?,
         argsSelecao: Array<String>?,

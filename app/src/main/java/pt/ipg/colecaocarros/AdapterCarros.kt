@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterCarros(val Fragment: ListaCarrosFragment) : RecyclerView.Adapter<AdapterCarros.ViewHolderCarros>() {
+class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<AdapterCarros.ViewHolderCarros>() {
     var cursor: Cursor? = null
         set(value) {
             field = value
@@ -17,17 +17,34 @@ class AdapterCarros(val Fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
         private val textViewMarca = contentor.findViewById<TextView>(R.id.textViewMarca)
         private val textViewModelo = contentor.findViewById<TextView>(R.id.textViewModelo)
 
+        init {
+            contentor.setOnClickListener {
+                viewHolderSeleccionado?.desSeleciona()
+                seleciona()
+            }
+        }
+
         internal var carros: Carros? = null
             set(value) {
                 field = value
                 textViewMarca.text = carros?.marca?: ""
-                textViewModelo.text = carros?.id_detalhes.toString()?: ""
+                textViewModelo.text = carros?.detalhes.toString()?: ""
+            }
+
+            fun seleciona() {
+                viewHolderSeleccionado = this
+                itemView.setBackgroundResource(R.color.item_selecionado)
+            }
+
+            fun desSeleciona() {
+                itemView.setBackgroundResource(android.R.color.white)
             }
     }
 
+        private var viewHolderSeleccionado : ViewHolderCarros? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCarros {
         return ViewHolderCarros(
-        Fragment.layoutInflater.inflate(R.layout.item_carro, parent, false)
+        fragment.layoutInflater.inflate(R.layout.item_carro, parent, false)
         )
     }
 

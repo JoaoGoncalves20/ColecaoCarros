@@ -78,13 +78,13 @@ class wwBdInstrumentedTest {
         val date = Calendar.getInstance()
         date.set(1999,8,18)
 
-        val carro = Carros("Ford","Focus",date, detalhes.id)
+        val carro = Carros("Ford","Focus",date, detalhes)
         insereCarro(bd,carro)
 
         val date2 = Calendar.getInstance()
         date2.set(2012,3,6)
 
-        val carro2= Carros("Toyota","Prius",date2, detalhes.id)
+        val carro2= Carros("Toyota","Prius",date2, detalhes)
         insereCarro(bd,carro2)
 
     }
@@ -138,17 +138,17 @@ class wwBdInstrumentedTest {
         val date = Calendar.getInstance()
         date.set(2018,7,15)
 
-        val carro1 = Carros("Ford","Fold",date, detalhes.id)
+        val carro1 = Carros("Ford","Fold",date, detalhes)
         insereCarro(bd, carro1)
 
         val date2 = Calendar.getInstance()
         date2.set(1996,5,26)
 
-        val carros2 = Carros("Toyota","Supra",date2, detalhes.id)
+        val carros2 = Carros("Toyota","Supra",date2, detalhes)
         insereCarro(bd, carros2)
 
         val tabelacarro = TabelaCarro(bd)
-        val cursor = tabelacarro.consulta(TabelaCarro.CAMPOS, "${BaseColumns._ID}=?", arrayOf(carro1.id.toString()), null, null, null)
+        val cursor = tabelacarro.consulta(TabelaCarro.CAMPOS, "${TabelaCarro.CAMPO_ID}=?", arrayOf(carro1.id.toString()), null, null, null)
 
         assert(cursor.moveToNext()) //move cursor para o primeiro registo
 
@@ -192,12 +192,12 @@ class wwBdInstrumentedTest {
         val date = Calendar.getInstance()
         date.set(2003,5,6)
 
-        val carro = Carros("Mercedez","A350",date, detalhes2.id)
+        val carro = Carros("Mercedez","A350",date, detalhes2)
         insereCarro(bd, carro)
 
         date.set(2003,5,13)
 
-        carro.id_detalhes = detalhes1.id
+        carro.detalhes = detalhes1
         carro.modelo = "M3"
         carro.data = date
         carro.marca = "BMW"
@@ -237,7 +237,7 @@ class wwBdInstrumentedTest {
         val date = Calendar.getInstance()
         date.set(2023,2,6)
 
-        val carro = Carros("Hyundai","Blank",date, detalhes.id)
+        val carro = Carros("Hyundai","Blank",date, detalhes)
         insereCarro(bd, carro)
 
         val registosEliminados = TabelaCarro(bd).elemina(

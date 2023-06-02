@@ -10,6 +10,8 @@ class TabelaDetalhes(db: SQLiteDatabase):TabelaBD(db, NOME_TABELA) {
 
     companion object{
         const val NOME_TABELA = "detalhes"
+
+        const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
         const val CAMPO_ESTADO = "estado"
         const val CAMPO_PRECO = "preco"
         const val CAMPO_KILOMETRAGEM = "kilometragem"
