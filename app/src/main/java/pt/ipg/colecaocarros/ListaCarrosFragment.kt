@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
@@ -73,5 +74,35 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         adapterCarros!!.cursor = data
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_adicionar -> {
+                adicionaCarro()
+                true
+            }
+            R.id.action_editar -> {
+                editarCarro()
+                true
+            }
+            R.id.action_eliminar -> {
+                eliminarCarro()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun eliminarCarro() {
+        TODO("Not yet implemented")
+    }
+
+    private fun editarCarro() {
+        TODO("Not yet implemented")
+    }
+
+    private fun adicionaCarro() {
+        TODO("Not yet implemented")
     }
 }
