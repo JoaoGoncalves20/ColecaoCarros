@@ -35,6 +35,10 @@ class SobreFragment : Fragment() {
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_Sobreragment_to_MenuPrincipalFragment)
         }
+
+        val activity =activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista_carros
     }
 
     override fun onDestroyView() {
