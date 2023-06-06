@@ -18,6 +18,7 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var _binding: FragmentListaCarrosBinding? = null
     private val binding get() = _binding!!
+    var carroselecionado:Carros?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
