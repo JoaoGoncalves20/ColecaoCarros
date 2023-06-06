@@ -39,6 +39,9 @@ class MenuPrincipalFragment : Fragment() {
         binding.buttonCars.setOnClickListener {
             findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaCarrosFragment)
         }
+
+        val activity =activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_main
     }
 
 
