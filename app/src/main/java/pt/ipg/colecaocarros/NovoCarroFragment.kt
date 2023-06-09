@@ -8,12 +8,17 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import pt.ipg.colecaocarros.databinding.FragmentNovoCarroBinding
 import pt.ipg.colecaocarros.databinding.FragmentSobreBinding
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 
 private const val ID_LOADER_DETALHES = 0
@@ -65,12 +70,61 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
     }
 
-    private fun cancelar() {
+    private fun voltaListaCarros() {
         findNavController().navigate((R.id.action_ListaCarrosFragment_to_novoCarroFragment))
     }
 
     private fun guardar() {
+        val marca = binding.TextInputMarca.text.toString()
+        if(marca.isBlank()){
+            binding.TextInputMarca.error= getString(R.string.campo_vazio)
+            binding.TextInputMarca.requestFocus()
+            return
+        }
 
+        val modelo = binding.TextInputModelo.text.toString()
+        if(modelo.isBlank()){
+            binding.TextInputModelo.error = getString(R.string.campo_vazio)
+            binding.TextInputModelo.requestFocus()
+            return
+        }
+
+        val data: Date
+
+        val df = SimpleDateFormat("dd-MM-yyyy")
+        try {
+            data = df.parse(binding.TextInputData.text.toString())
+        } catch (e: Exception) {
+            binding.TextInputData.error = getString(R.string.data_invalida)
+            binding.TextInputData.requestFocus()
+            return
+        }
+
+        val detalhes = binding.spinnerDetalhes.selectedItemId
+
+        val calendario = Calendar.getInstance()
+
+        calendario.time = data
+
+        val carro = Carros(
+            marca,
+            modelo,
+            calendario,
+            Detalhes("?",0,0,detalhes)
+
+        )
+
+        requireActivity().contentResolver.insert(
+            CarrosContentProvider.ENDERECO_CARROS,
+            carro.toContentValues()
+        )
+
+        if(id == null){
+            binding.TextInputMarca.error = getString(R.string.erro_guardar_carro)
+            return
+        }
+
+        Toast.makeText(requireContext(),getString(R.string.guardar_carro_sucesso),0)
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {

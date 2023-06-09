@@ -23,7 +23,11 @@
     <string name="detalhes">Detalhes</string>
     <string name="marca">Marca</string>
     <string name="modelo_hint">Modelo</string>
-    <string name="data_hint" />
+    <string name="data_hint" >dd-mm-yyy</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="campo_vazio">Campo não pode estar vazio</string>
+    <string name="data_invalida">Data Inválida</string>
+    <string name="erro_guardar_carro">Não Foi possivel guardar o carro</string>
+    <string name="guardar_carro_sucesso">Carro Guardado com sucesso</string>
 </resources>
