@@ -18,4 +18,10 @@
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
     <string name="novo_carro_label">Novo Carro</string>
+    <string name="modelo">Modelo</string>
+    <string name="data_de_fabrico">Data De Fabrico</string>
+    <string name="detalhes">Detalhes</string>
+    <string name="marca">Marca</string>
+    <string name="modelo_hint">Modelo</string>
+    <string name="data_hint" />
 </resources>

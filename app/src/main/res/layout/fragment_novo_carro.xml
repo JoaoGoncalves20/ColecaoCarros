@@ -8,21 +8,70 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TextInputMarca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:layout_marginBottom="8dp"
+            android:hint="@string/marca"
+            android:inputType="text"
+            android:textColorHint="#546E7A"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/modelo" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TextInputModelo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_marginBottom="8dp"
+                android:hint="@string/modelo_hint"
+                android:textColorHint="#546E7A"
+                tools:ignore="VisualLintTextFieldSize" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/data_de_fabrico" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TextInputData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/data_hint"
+                    tools:ignore="VisualLintTextFieldSize" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detalhes" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:minHeight="48dp" />
+            </com.google.android.material.textfield.TextInputLayout>
         </com.google.android.material.textfield.TextInputLayout>
+
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
