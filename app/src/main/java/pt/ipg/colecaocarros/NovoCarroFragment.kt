@@ -63,7 +63,7 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 true
             }
             R.id.action_cancelar -> {
-                cancelar()
+                voltaListaCarros()
                 true
             }
             else -> false
@@ -110,7 +110,7 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             marca,
             modelo,
             calendario,
-            Detalhes("?",0,0,detalhes)
+            Detalhes("?", 0.0,0.0,detalhes)
 
         )
 
@@ -124,7 +124,8 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        Toast.makeText(requireContext(),getString(R.string.guardar_carro_sucesso),0)
+        Toast.makeText(requireContext(),getString(R.string.guardar_carro_sucesso), Toast.LENGTH_SHORT)
+        return
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
