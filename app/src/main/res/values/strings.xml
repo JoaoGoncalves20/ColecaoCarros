@@ -24,4 +24,6 @@
     <string name="marca">Marca</string>
     <string name="modelo_hint">Modelo</string>
     <string name="data_hint" />
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
