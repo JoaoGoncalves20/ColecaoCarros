@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/eliminarCarroFragment"
-        android:name="pt.ipg.colecaocarros.eliminar_Carro_Fragment"
+        android:name="pt.ipg.colecaocarros.EliminarCarroFragment"
         android:label="@string/eliminar_carro_label"
         tools:layout="@layout/fragment_eliminar__carro_" >
         <action

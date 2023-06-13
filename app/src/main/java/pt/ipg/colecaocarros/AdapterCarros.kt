@@ -28,7 +28,7 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
             set(value) {
                 field = value
                 textViewMarca.text = carros?.marca?: ""
-                textViewModelo.text = carros?.detalhes.toString()?: ""
+                textViewModelo.text = carros?.detalhes?.estado ?: ""
             }
 
             fun seleciona() {

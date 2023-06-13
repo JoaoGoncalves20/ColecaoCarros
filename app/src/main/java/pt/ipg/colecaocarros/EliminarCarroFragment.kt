@@ -20,10 +20,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [eliminar_Carro_Fragment.newInstance] factory method to
+ * Use the [EliminarCarroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class eliminar_Carro_Fragment : Fragment() {
+class EliminarCarroFragment : Fragment() {
     private lateinit var carros: Carros
     private var _binding: FragmentEliminarCarroBinding? = null
 
@@ -44,7 +44,7 @@ class eliminar_Carro_Fragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        carros = eliminar_Carro_FragmentArgs.fromBundle(requireArguments()).carro
+        carros = EliminarCarroFragmentArgs.fromBundle(requireArguments()).carro
 
         binding.textViewMarcaE.text = carros.marca
         binding.textViewModeloE.text = carros.modelo

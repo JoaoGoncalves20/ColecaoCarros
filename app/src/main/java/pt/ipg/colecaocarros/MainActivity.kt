@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    var fragment: Fragment? = null
+    var fragment : Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         val opcaoProcessada = when (fragment) {
             is ListaCarrosFragment -> (fragment as ListaCarrosFragment).processaOpcaoMenu(item)
             is EditarCarroFragment ->(fragment as EditarCarroFragment).processaOpcaoMenu(item)
-            is eliminar_Carro_Fragment -> (fragment as eliminar_Carro_Fragment).processaOpcaoMenu(item)
+            is EliminarCarroFragment -> (fragment as EliminarCarroFragment).processaOpcaoMenu(item)
             else -> false
         }
 
