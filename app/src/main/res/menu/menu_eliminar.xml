@@ -4,8 +4,15 @@
 
     <item
         android:id="@+id/action_eliminar"
-        android:icon="@drawable/baseline_save_24"
+        android:icon="@drawable/baseline_delete_24"
         android:title="@string/eliminar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/baseline_cancel_24"
+        android:title="@string/cancelar"
         app:showAsAction="ifRoom" />
 
 </menu>
