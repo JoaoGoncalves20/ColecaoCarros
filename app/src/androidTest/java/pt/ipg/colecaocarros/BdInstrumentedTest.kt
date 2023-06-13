@@ -18,7 +18,7 @@ import java.util.Calendar
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class wwBdInstrumentedTest {
+class BdInstrumentedTest {
 
     private fun getAppContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
@@ -62,7 +62,7 @@ class wwBdInstrumentedTest {
     fun consegueInserirDetalhes(){
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Ford",10356.0,15823.7)
+        val detalhes = Detalhes("Novo")
         insereDetalhes(bd, detalhes)
 
         //TabelaDetalhes(bd).insere()
@@ -72,7 +72,7 @@ class wwBdInstrumentedTest {
     fun consegueInserirCarros(){
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Usado",14567.0,123789.3)
+        val detalhes = Detalhes("Usado")
         insereDetalhes(bd, detalhes)
 
         val date = Calendar.getInstance()
@@ -93,10 +93,10 @@ class wwBdInstrumentedTest {
     fun consegueLerDetalhes() {
         val bd = getWritableDataBase()
 
-        val detalhes1 = Detalhes("novo", 15900.0, 0.0)
+        val detalhes1 = Detalhes("novo")
         insereDetalhes(bd, detalhes1)
 
-        val detalhes2 = Detalhes("usado", 2989.90, 157876.0)
+        val detalhes2 = Detalhes("usado")
         insereDetalhes(bd, detalhes2)
 
         val tabelaDetalhes = TabelaDetalhes(bd)
@@ -132,7 +132,7 @@ class wwBdInstrumentedTest {
     fun consegueLerCarro() {
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Novo", 16908.0, 0.0)
+        val detalhes = Detalhes("Novo")
         insereDetalhes(bd, detalhes)
 
         val date = Calendar.getInstance()
@@ -165,7 +165,7 @@ class wwBdInstrumentedTest {
     fun consegueAlterarDetalhes() {
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Novo", 13808.0, 0.0)
+        val detalhes = Detalhes("Novo")
         insereDetalhes(bd, detalhes)
 
         detalhes.estado = "novo"
@@ -183,10 +183,10 @@ class wwBdInstrumentedTest {
     fun consegueAlterarCarros() {
         val bd = getWritableDataBase()
 
-        val detalhes1 = Detalhes("Usado", 16908.0, 85000.0)
+        val detalhes1 = Detalhes("Usado")
         insereDetalhes(bd, detalhes1)
 
-        val detalhes2 = Detalhes("Usado", 14608.0, 135000.0)
+        val detalhes2 = Detalhes("Usado")
         insereDetalhes(bd, detalhes2)
 
         val date = Calendar.getInstance()
@@ -216,7 +216,7 @@ class wwBdInstrumentedTest {
     fun consegueApagarDetalhes(){
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Usado", 7308.83, 76000.0)
+        val detalhes = Detalhes("Usado")
         insereDetalhes(bd, detalhes)
 
         val registosEliminados = TabelaDetalhes(bd).elemina(
@@ -231,7 +231,7 @@ class wwBdInstrumentedTest {
     fun consegueApagarCarros(){
         val bd = getWritableDataBase()
 
-        val detalhes = Detalhes("Novo", 37308.83, 0.0)
+        val detalhes = Detalhes("Novo")
         insereDetalhes(bd, detalhes)
 
         val date = Calendar.getInstance()

@@ -40,24 +40,9 @@
                 android:textColorHint="#546E7A"
                 tools:ignore="VisualLintTextFieldSize" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/data_de_fabrico" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:hint="@string/data_hint"
-                    android:inputType="datetime|date"
-                    tools:ignore="VisualLintTextFieldSize,SpeakableTextPresentCheck" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -71,7 +56,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:minHeight="48dp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/data_de_fabrico" />
+
+                <CalendarView
+                    android:id="@+id/calendarViewData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="316dp"
+                    android:layout_weight="1" />
             </com.google.android.material.textfield.TextInputLayout>
+
         </com.google.android.material.textfield.TextInputLayout>
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -51,10 +51,21 @@
         <action
             android:id="@+id/action_novoCarroFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />
+        <argument
+            android:name="carro"
+            app:argType="pt.ipg.colecaocarros.Carros"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/eliminarCarroFragment"
         android:name="pt.ipg.colecaocarros.eliminar_Carro_Fragment"
         android:label="@string/eliminar_carro_label"
-        tools:layout="@layout/fragment_eliminar__carro_" />
+        tools:layout="@layout/fragment_eliminar__carro_" >
+        <action
+            android:id="@+id/action_eliminarCarroFragment_to_ListaCarrosFragment"
+            app:destination="@id/ListaCarrosFragment" />
+        <argument
+            android:name="carro"
+            app:argType="pt.ipg.colecaocarros.Carros" />
+    </fragment>
 </navigation>

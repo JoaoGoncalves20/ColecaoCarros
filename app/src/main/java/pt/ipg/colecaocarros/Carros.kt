@@ -5,13 +5,13 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.util.Calendar
 
-data class Carros(var marca: String, var modelo: String, var data: Calendar, var detalhes: Detalhes, var id: Long=-1) {
+data class Carros(var marca: String, var modelo: String, var data: Calendar?, var detalhes: Detalhes, var id: Long=-1) {
     fun toContentValues():ContentValues{
         val valores = ContentValues()
 
         valores.put(TabelaCarro.CAMPO_MARCA, marca)
         valores.put(TabelaCarro.CAMPO_MODELO, modelo)
-        valores.put(TabelaCarro.CAMPO_DATA, data.timeInMillis)
+        valores.put(TabelaCarro.CAMPO_DATA, data?.timeInMillis)
         valores.put(TabelaCarro.CAMPO_FK_DETALHES, detalhes.id)
 
         return valores
@@ -24,8 +24,6 @@ data class Carros(var marca: String, var modelo: String, var data: Calendar, var
             val posData = cursor.getColumnIndex(TabelaCarro.CAMPO_DATA)
             val posDetalhesFK = cursor.getColumnIndex(TabelaCarro.CAMPO_FK_DETALHES)
             val posEstadoDetalhes = cursor.getColumnIndex(TabelaCarro.CAMPO_ESTADO_DETALHES)
-            val posPrecoDetalhes = cursor.getColumnIndex(TabelaCarro.CAMPO_PRECO_DETALHES)
-            val posKilometragemDetalhes = cursor.getColumnIndex(TabelaCarro.CAMPO_KILOMETRAGEM_DETALHES)
 
             val id = cursor.getLong(posID)
             val marca = cursor.getString(posMarca)
@@ -34,11 +32,9 @@ data class Carros(var marca: String, var modelo: String, var data: Calendar, var
             data.timeInMillis = cursor.getLong(posData)
             val detalhesFK = cursor.getLong(posDetalhesFK)
             val estadoDetalhes = cursor.getString(posEstadoDetalhes)
-            val precoDetalhes = cursor.getDouble(posPrecoDetalhes)
-            val kilometragemDetalhes = cursor.getDouble(posKilometragemDetalhes)
 
 
-            return Carros(marca,modelo,data,Detalhes(estadoDetalhes,precoDetalhes,kilometragemDetalhes,detalhesFK),id)
+            return Carros(marca,modelo,data,Detalhes(estadoDetalhes,detalhesFK),id)
 
         }
     }

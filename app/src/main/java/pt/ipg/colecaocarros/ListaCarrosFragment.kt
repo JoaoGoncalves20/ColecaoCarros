@@ -43,6 +43,11 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private var adapterCarros: AdapterCarros? = null
 
 
@@ -61,10 +66,6 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         activity.idMenuAtual = R.menu.menu_lista_carros
     }
 
-    companion object {
-
-    }
-
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
             requireContext(),
@@ -76,12 +77,16 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
     }
 
-    override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterCarros!!.cursor = null
-    }
+
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         adapterCarros!!.cursor = data
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        if (adapterCarros != null) {
+            adapterCarros!!.cursor = null
+        }
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
@@ -103,15 +108,17 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun eliminarCarro() {
-        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEliminarCarroFragment(CarroSelecionado)
-        findNavController()
+        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEliminarCarroFragment(carroselecionado!!)
+        findNavController().navigate(acao)
     }
 
     private fun editarCarro() {
-        TODO("Not yet implemented")
+        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToNovoCarroFragment(carroselecionado!!)
+        findNavController().navigate(acao)
     }
 
     private fun adicionaCarro() {
-        findNavController().navigate(R.id.action_ListaCarrosFragment_to_novoCarroFragment)
+        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToNovoCarroFragment(null)
+        findNavController().navigate(acao)
     }
 }

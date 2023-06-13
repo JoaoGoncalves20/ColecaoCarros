@@ -25,11 +25,16 @@
     <string name="modelo_hint">Modelo</string>
     <string name="data_hint">dd-mm-yyy</string>
     <string name="guardar">Guardar</string>
-    <string name="eliminar">Eliminar</string>
     <string name="cancelar">Cancelar</string>
     <string name="campo_vazio">Campo não pode estar vazio</string>
     <string name="data_invalida">Data Inválida</string>
     <string name="erro_guardar_carro">Não Foi possivel guardar o carro</string>
     <string name="guardar_carro_sucesso">Carro Guardado com sucesso</string>
     <string name="eliminar_carro_label">Eliminar Carro</string>
+    <string name="marca_label">Marca do Carro</string>
+    <string name="nova_marca_label">Nova Marca</string>
+    <string name="erro_ao_guardar_carro">Não foi possivel guardar o carro</string>
+    <string name="carro_guardado_com_sucesso">Carro Guardado com sucesso</string>
+    <string name="carro_eleminado_sucesso">Carro Eliminado Com Sucesso</string>
+    <string name="carro_erro_eliminar">Erro ao Eliminar Carro</string>
 </resources>

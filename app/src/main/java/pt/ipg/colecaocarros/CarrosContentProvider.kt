@@ -24,7 +24,6 @@ class CarrosContentProvider : ContentProvider() {
         p4: String?
     ): Cursor? {
         val bd = bdOpenHelper!!.readableDatabase
-        val id = p0.lastPathSegment
 
         val endereco = uriMatcher().match(p0)
 
@@ -34,6 +33,9 @@ class CarrosContentProvider : ContentProvider() {
 
             else -> null
         }
+
+        val id = p0.lastPathSegment
+
         val (selecao, argsSel) = when(endereco){
             URI_DETALHES_ID,URI_CARROS_ID -> Pair("${BaseColumns._ID}=?", arrayOf(id))
             else -> Pair(p2,p3)
@@ -70,7 +72,6 @@ class CarrosContentProvider : ContentProvider() {
         val tabela = when (endereco){
             URI_DETALHES -> TabelaDetalhes(bd)
             URI_CARROS -> TabelaCarro(bd)
-
             else -> return null
         }
 
