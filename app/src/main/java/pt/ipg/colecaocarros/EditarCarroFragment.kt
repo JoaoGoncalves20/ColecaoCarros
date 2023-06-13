@@ -14,8 +14,6 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import pt.ipg.colecaocarros.databinding.FragmentNovoCarroBinding
-import pt.ipg.colecaocarros.databinding.FragmentSobreBinding
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -23,7 +21,7 @@ import java.util.Date
 
 private const val ID_LOADER_DETALHES = 0
 
-class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class EditarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentNovoCarroBinding? = null
 
     // This property is only valid between onCreateView and

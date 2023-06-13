@@ -45,9 +45,9 @@
     </fragment>
     <fragment
         android:id="@+id/novoCarroFragment"
-        android:name="pt.ipg.colecaocarros.NovoCarroFragment"
+        android:name="pt.ipg.colecaocarros.EditarCarroFragment"
         android:label="@string/novo_carro_label"
-        tools:layout="@layout/fragment_novo_carro">
+        tools:layout="@layout/fragment_editar_carro">
         <action
             android:id="@+id/action_novoCarroFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />

@@ -103,7 +103,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun eliminarCarro() {
-        TODO("Not yet implemented")
+        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEliminarCarroFragment(CarroSelecionado)
+        findNavController()
     }
 
     private fun editarCarro() {

@@ -1,7 +1,6 @@
 package pt.ipg.colecaocarros
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         val opcaoProcessada = when (fragment) {
             is ListaCarrosFragment -> (fragment as ListaCarrosFragment).processaOpcaoMenu(item)
-            is NovoCarroFragment ->(fragment as NovoCarroFragment).processaOpcaoMenu(item)
+            is EditarCarroFragment ->(fragment as EditarCarroFragment).processaOpcaoMenu(item)
             else -> false
         }
 
