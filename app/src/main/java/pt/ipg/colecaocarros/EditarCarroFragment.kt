@@ -178,7 +178,9 @@ class EditarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        binding.spinnerDetalhes.adapter = null
+        if (_binding != null) {
+            binding.spinnerDetalhes.adapter = null
+        }
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
