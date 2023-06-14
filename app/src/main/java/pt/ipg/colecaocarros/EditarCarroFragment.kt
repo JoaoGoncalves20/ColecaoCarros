@@ -92,7 +92,7 @@ class EditarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun voltaListaCarros() {
-        findNavController().navigate((R.id.action_ListaCarrosFragment_to_novoCarroFragment))
+        findNavController().navigate((R.id.action_novoCarroFragment_to_ListaCarrosFragment))
     }
 
     private fun guardar() {

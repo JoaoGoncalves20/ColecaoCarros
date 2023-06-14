@@ -14,7 +14,7 @@ class TabelaDetalhes(db: SQLiteDatabase):TabelaBD(db, NOME_TABELA) {
         const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
         const val CAMPO_ESTADO = "estado"
 
-        val CAMPOS = arrayOf(BaseColumns._ID,CAMPO_ESTADO)
+        val CAMPOS = arrayOf(CAMPO_ID,CAMPO_ESTADO)
 
     }
 
