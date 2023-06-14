@@ -3,9 +3,10 @@ package pt.ipg.colecaocarros
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 import java.util.Calendar
 
-data class Carros(var marca: String, var modelo: String, var data: Calendar?, var detalhes: Detalhes, var id: Long=-1) {
+data class Carros(var marca: String, var modelo: String, var data: Calendar?, var detalhes: Detalhes, var id: Long=-1) : Serializable{
     fun toContentValues():ContentValues{
         val valores = ContentValues()
 
